@@ -49,8 +49,8 @@ class _MainPageState extends State<MainPage> {
         },
         children: [
           HomePage(),
-          Marketplacepage(),
-          Profilepage(),
+          MarketplacePage(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: CustomNavBar(

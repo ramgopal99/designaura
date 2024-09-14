@@ -42,7 +42,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                AppAssets.assetsIconsMessage,
+                AppAssets.assetsIconsMarketplace,
                 height: 24,
                 width: 24,
               ),

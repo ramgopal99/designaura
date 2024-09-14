@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "313118968795",
+    "project_id": "designaura-f07d3",
+    "storage_bucket": "designaura-f07d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313118968795:android:bf0a4ef81eadc6232335fe",
+        "android_client_info": {
+          "package_name": "com.company.designaura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313118968795-knqpccske0gqji9p7ssscoppftcj2j74.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.designaura",
+            "certificate_hash": "66fb92f7b9f59f0d2167df6c65d00d8082685be4"
+          }
+        },
+        {
+          "client_id": "313118968795-mdkr4anel97v6tv3f6tgpkrjbbcn5ghs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQxKE9VBGe4KdS4lW0tLEo2wa3fIoyMP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313118968795-mdkr4anel97v6tv3f6tgpkrjbbcn5ghs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
