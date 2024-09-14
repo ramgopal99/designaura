@@ -39,7 +39,6 @@ The **Profile section** empowers you to:
 
 **Design Aura** leverages a powerful tech stack to deliver an outstanding user experience:
 - **Flutter**: For smooth, cross-platform mobile experiences.
-- **Express.js** and **Node.js**: Backend infrastructure that powers seamless communication with chatbots and AR features.
 - **2 On-Demand AI Agents**:
   - **Design Agent**: Gives personalized interior design tips.
   - **Product Agent**: Recommends decor items with buying links.
