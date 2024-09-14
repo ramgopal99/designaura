@@ -60,7 +60,7 @@ The **Profile section** empowers you to:
 
 You can explore the full on-demand experience of **Design Aura** on our platform here:
 
-[On-Demand Platform Link]((https://app.on-demand.io/))
+[On-Demand Platform Link](https://app.on-demand.io/)
 
 ---
 
