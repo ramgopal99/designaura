@@ -38,26 +38,105 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Future<void> sendMessage(String message) async {
+    if (!_isInteriorDesignQuery(message)) {
+      _showNotInteriorDesignDialog();
+      return;
+    }
+
     setState(() {
-      _messages.add({'text': message, 'type': 'user'});
+      _messages.add({
+        'text': message,
+        'type': 'user',
+        'timestamp': DateTime.now().toIso8601String()
+      });
       _isLoading = true;
     });
 
     final response = await createChatSessionAndSubmitQuery(message);
 
     setState(() {
-      _messages.add({'text': response, 'type': 'bot'});
+      _messages.add({
+        'text': response,
+        'type': 'bot',
+        'timestamp': DateTime.now().toIso8601String()
+      });
       _isLoading = false;
     });
 
     _saveMessages();
   }
 
+  bool _isInteriorDesignQuery(String query) {
+    final keywords = [
+      'interior',
+      'design',
+      'decor',
+      'furniture',
+      'space',
+      'color',
+      'lighting',
+      'texture',
+      'pattern',
+      'style',
+      'layout',
+      'accessory',
+      'wallpaper',
+      'flooring',
+      'curtains',
+      'cushion',
+      'rug',
+      'artwork',
+      'modern',
+      'classic',
+      'contemporary',
+      'minimalist',
+      'vintage',
+      'bohemian',
+      'rustic',
+      'industrial',
+      'elegant',
+      'chic',
+      'sustainable',
+      'eco-friendly',
+      'comfort',
+      'functionality',
+      'organization',
+      'storage',
+      'shelving',
+      'partition',
+      'room',
+      'kitchen',
+      'bathroom',
+      'living room',
+      'bedroom',
+      'dining room',
+      'home office',
+      'studio',
+      'focal point',
+      'accent',
+      'theme',
+      'finish',
+      'material',
+      'color palette',
+      'wall art',
+      'ceiling',
+      'window treatment',
+      'cabinetry',
+      'countertop',
+      'sink',
+      'hi',
+      'hello',
+      'by',
+      'room'
+    ];
+
+    return keywords.any((keyword) => query.toLowerCase().contains(keyword));
+  }
+
   Future<String> createChatSessionAndSubmitQuery(String query) async {
     const apiKey = 'vjICsA9OIJSBdf9to4r2pK49baTL9j6m';
     const externalUserId = 'qwer';
 
-    // Create Chat Session
     final createSessionUrl =
         Uri.parse('https://api.on-demand.io/chat/v1/sessions');
     final createSessionResponse = await http.post(
@@ -75,7 +154,6 @@ class _ChatPageState extends State<ChatPage> {
     final sessionData = jsonDecode(createSessionResponse.body);
     final sessionId = sessionData['data']['id'];
 
-    // Submit Query
     final submitQueryUrl =
         Uri.parse('https://api.on-demand.io/chat/v1/sessions/$sessionId/query');
     final submitQueryResponse = await http.post(
@@ -96,56 +174,98 @@ class _ChatPageState extends State<ChatPage> {
     return responseData['data']['answer'] ?? 'No answer received';
   }
 
+  void _showNotInteriorDesignDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Not Related to Interior Design'),
+          content: Text('Please ask a question related to interior design.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with Bot'),
+        title: Text('Interior Design Chat'),
         backgroundColor: Colors.teal,
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-                reverse: true,
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  final message = _messages[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 8.0),
-                    child: Align(
-                      alignment: message['type'] == 'user'
-                          ? Alignment.bottomRight
-                          : Alignment.topLeft,
-                      child: Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: message['type'] == 'user'
-                              ? Colors.teal
-                              : Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 4,
-                              offset: Offset(2, 2),
+              reverse: true,
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                final isUserMessage = message['type'] == 'user';
+                final timestamp = DateTime.parse(message['timestamp']!)
+                    .toLocal()
+                    .toString()
+                    .split(' ')[1]
+                    .substring(0, 5);
+
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                  child: Align(
+                    alignment: isUserMessage
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: isUserMessage
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(12),
+                          constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width * 0.7),
+                          decoration: BoxDecoration(
+                            color: isUserMessage
+                                ? Colors.teal
+                                : Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 4,
+                                offset: Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            message['text']!,
+                            style: TextStyle(
+                              color: isUserMessage ? Colors.white : Colors.black87,
+                              fontSize: 16,
                             ),
-                          ],
-                        ),
-                        child: Text(
-                          message['text']!,
-                          style: TextStyle(
-                            color: message['type'] == 'user'
-                                ? Colors.white
-                                : Colors.black87,
-                            fontSize: 16,
                           ),
                         ),
-                      ),
+                        SizedBox(height: 4),
+                        Text(
+                          timestamp,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
           ),
           if (_isLoading)
             Padding(
@@ -174,7 +294,7 @@ class _ChatPageState extends State<ChatPage> {
                     child: TextField(
                       controller: _controller,
                       decoration: InputDecoration(
-                        hintText: 'Type your message here...',
+                        hintText: 'Ask about interior design...',
                         border: InputBorder.none,
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 16, vertical: 12),

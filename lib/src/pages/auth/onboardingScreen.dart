@@ -1,3 +1,4 @@
+import 'package:designaura/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../widgets/onbording_custom_buttom.dart';
@@ -21,24 +22,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               setState(() {});
             },
             children: [
-              buildPage(
-                color: AppColors.backgroundColor,
-                title: 'Welcome fg',
-                subtitle: 'This is the first page of the onboarding.',
-                image: Icons.ac_unit,
-              ),
-              buildPage(
-                color: AppColors.backgroundColor,
-                title: 'Discover',
-                subtitle: 'Discover new features and capabilities.',
-                image: Icons.lightbulb_outline,
-              ),
-              buildPage(
-                color: AppColors.backgroundColor,
-                title: 'Get Started',
-                subtitle: 'Let\'s get started with our application.',
-                image: Icons.start,
-              ),
+             buildPage(
+  color: AppColors.backgroundColor,
+  title: 'Welcome to Aura',
+  subtitle: 'Transform your space with cutting-edge 3D AR modeling and personalized design suggestions.',
+  imagePath: AppAssets.assetsIconsOb1,
+),
+buildPage(
+  color: AppColors.backgroundColor,
+  title: 'Smart Design Suggestions',
+  subtitle: 'Get creative design ideas and product recommendations from our intelligent chatbot.',
+  imagePath: AppAssets.assetsIconsOb2,
+),
+buildPage(
+  color: AppColors.backgroundColor,
+  title: 'Explore and Shop',
+  subtitle: 'Browse stylish decor items, view detailed descriptions, and use AR to try before you buy.',
+  imagePath: AppAssets.assetsIconsOb3,
+),
+
             ],
           ),
           Positioned(
@@ -58,30 +60,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     required Color color,
     required String title,
     required String subtitle,
-    required IconData image,
+    required String imagePath,
   }) {
     return Container(
       color: color,
+      padding: EdgeInsets.symmetric(horizontal: 20), // Added padding for better alignment
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(image, size: 120, color: AppColors.quaternaryColor),
-          SizedBox(height: 40),
+          Image.asset(
+            imagePath,
+            width: 350, // Adjust width as needed
+            height: 350, // Adjust height as needed
+            fit: BoxFit.cover, // Adjust image fit
+          ),
+          SizedBox(height: 30), // Adjust spacing between image and title
           Text(
             title,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 24, // Adjust font size as needed
               color: AppColors.quaternaryColor,
               fontWeight: FontWeight.bold,
             ),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 15), // Adjust spacing between title and subtitle
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 30), // Adjust horizontal padding
             child: Text(
               subtitle,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16, // Adjust font size as needed
                 color: AppColors.quaternaryColor,
               ),
               textAlign: TextAlign.center,

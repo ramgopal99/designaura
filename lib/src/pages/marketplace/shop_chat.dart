@@ -117,7 +117,7 @@ class _ShopChatPageState extends State<ShopChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with Bot'),
+        title: Text('Chat With Bot About Your Product'),
         backgroundColor: Colors.teal,
       ),
       body: Column(
