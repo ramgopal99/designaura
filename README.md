@@ -99,10 +99,6 @@ Want to see **Design Aura** in action? Watch our demo video to get a hands-on lo
      ```bash
      flutter run
      ```
-   - **For Node.js backend**:
-     ```bash
-     npm start
-     ```
 
 ---
 
