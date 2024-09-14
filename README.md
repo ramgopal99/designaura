@@ -60,7 +60,7 @@ The **Profile section** empowers you to:
 
 You can explore the full on-demand experience of **Design Aura** on our platform here:
 
-[On-Demand Platform Link](https://example.com/ondemand-platform-link)
+[On-Demand Platform Link]((https://app.on-demand.io/))
 
 ---
 
@@ -68,27 +68,10 @@ You can explore the full on-demand experience of **Design Aura** on our platform
 
 Want to see **Design Aura** in action? Watch our demo video to get a hands-on look at the app's features and its AR capabilities:
 
-[Watch the Demo Video](https://example.com/demo-video-link)
+[Watch the Demo Video](https://drive.google.com/drive/folders/12AvDdLr1fZCaz4qTGjqebn3lhw84yNUt?usp=drive_link)
 
 ---
 
-## 🖼 **Screenshots**
-
-Here’s a sneak peek into the **Design Aura** experience:
-
-### 1. **Splash Screen**
-![Splash Screen](https://example.com/splash-screen.png)
-
-### 2. **Home Screen with Chatbot**
-![Home Screen](https://example.com/home-screen.png)
-
-### 3. **Augmented Reality View**
-![AR View](https://example.com/ar-view.png)
-
-### 4. **Marketplace Decor Items**
-![Marketplace](https://example.com/marketplace.png)
-
----
 
 ## 🎯 **How to Get Started**
 
